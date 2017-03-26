@@ -1,11 +1,12 @@
 # videothumb
 
-Aim: To upload Upload a Video file (.mp4, max size of 10 MB) and Generate a thumbnail image of that video file
+Aim: To upload Upload a Video file (.mp4 .mpg, max size of 10 MB) and Generate a thumbnail image of that video file
 
 Other Goals: Use REST APIs, Docker, Documentation
 
 Tech Stack: Python(Flask)
 
+Site is Live: http://52.23.163.70/
 - Usage:
 ```buildoutcfg
 
@@ -40,10 +41,45 @@ cd videothumb
 sudo docker-compose build .
 sudo docker-compose up
 ```
+-API
 
-- API 
+Request: POST /upload
+```json
+cURL: curl -X POST -H "Cache-Control: no-cache"  -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "file=@test-mpeg.mpg" "http://localhost:5000/upload"
 
+Response:
+for success:
+{
+  "filename": "test-mpeg.mpg",
+  "status": "Uploaded"
+}
 
+for failure:
+{
+  "status": "This file extesion not allowed."
+}
+
+or 
+
+{
+  "status": "File size more then 10Mb."
+}
+
+```
+
+Request: GET /files
+```json
+cURL: curl -X GET -H "Cache-Control: no-cache"  "http://localhost:5000/files"
+Response:
+{
+  "files": [
+    "test-mpeg.jpeg",
+    "centaur_2.jpeg"
+  ],
+  "status": "OK"
+}
+
+```
 
 
  
