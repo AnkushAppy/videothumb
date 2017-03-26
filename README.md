@@ -41,11 +41,13 @@ cd videothumb
 sudo docker-compose build .
 sudo docker-compose up
 ```
--API
+- API
 
 Request: POST /upload
 ```json
-cURL: curl -X POST -H "Cache-Control: no-cache"  -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "file=@test-mpeg.mpg" "http://localhost:5000/upload"
+cURL: curl -X POST -H "Cache-Control: no-cache"  \
+      -H "Content-Type: multipart/form-data" \
+      -F "file=@test-mpeg.mpg" "http://localhost:5000/upload"
 
 Response:
 for success:
@@ -80,6 +82,8 @@ Response:
 }
 
 ```
+
+
 
 
  
