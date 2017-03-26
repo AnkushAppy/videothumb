@@ -51,7 +51,7 @@ def print_info(vs):
     print "frame_mode: %s" % vs.frame_mode
 
 
-def find_images_among_files():
+def find_images():
 
     file_list = os.listdir(UPLOAD_FOLDER_IMAGES)
     only_images = []
