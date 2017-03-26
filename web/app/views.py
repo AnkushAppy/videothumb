@@ -11,18 +11,27 @@ from helper import \
 
 UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
 ALLOWED_EXTENSIONS = app.config['ALLOWED_EXTENSIONS']
+ALLOWED_SIZE = app.config['ALLOWED_SIZE']
 
 
 @app.route('/upload', methods=['POST'])
 def upload():
 
     file = request.files['file']
+    size =  request.content_length
 
     if not file:
+        print "No File to Upload."
         return jsonify(
             status="No File to Upload."
         )
-    elif allowed_file(file.filename):
+    elif size > ALLOWED_SIZE:
+        print "File size more then 10Mb."
+        return jsonify(
+            status="File size more then 10Mb."
+        )
+    elif not allowed_file(file.filename):
+        print "This file extesion not allowed."
         return jsonify(
             status="This file extesion not allowed."
         )
@@ -30,10 +39,12 @@ def upload():
         try:
             upload_file(file)
         except:
+            print "Failed to upload. Some error occured."
             return jsonify(
-                status="Some error occured."
+                status="Failed to upload. Some error occured."
             )
     else:
+        print "Some error occured."
         return jsonify(
             status="Some error occured."
         )

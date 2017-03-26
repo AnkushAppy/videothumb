@@ -15,6 +15,8 @@ MAX_CONTENT_LENGTH = app.config['MAX_CONTENT_LENGTH']
 def allowed_file(filename):
     if '.' in filename and filename.split('.', 1)[1] in ALLOWED_EXTENSIONS:
         return True
+    return False
+
 
 def allowed_size(file):
     if file.size < MAX_CONTENT_LENGTH:
@@ -24,13 +26,13 @@ def allowed_size(file):
 
 def create_thumbmail(filename, imagename):
     vs = VideoStream(filename,
-                     frame_size=(128, None),  # scale to width 128px
-                     frame_mode='L' # convert to grayscale
+                     # frame_size=(128, None),  # scale to width 128px
+                     # frame_mode='L' # convert to grayscale
                      )
     image_name = imagename.split('.')[0]
-    frame = vs.get_frame_at_sec(2)
+    frame = vs.get_frame_at_sec(10)
     img = frame.image()
-    img = img.resize((300,300), PIL.Image.ANTIALIAS)
+    img = img.resize((300,300))
     img.save('{0}.jpeg'.format(image_name))
 
 
