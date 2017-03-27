@@ -19,6 +19,7 @@ git clone https://github.com/AnkushAppy/videothumb.git
 cd videothumb
 cd web
 virtualenv venv
+. venv/bin/activate
 pip install -r requirements.txt
 python run.py
 
