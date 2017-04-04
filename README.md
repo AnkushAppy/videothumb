@@ -6,7 +6,6 @@ Other Goals: Use REST APIs, Docker, Documentation
 
 Tech Stack: Python(Flask)
 
-Site is Live: http://52.23.163.70/
 - Usage:
 ```buildoutcfg
 
